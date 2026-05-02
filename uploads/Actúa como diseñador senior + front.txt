@@ -1,0 +1,109 @@
+Actúa como diseñador senior + frontend developer experto en SaaS B2B industrial.
+
+NO quiero una propuesta genérica.
+
+Ya tengo una base de web funcional y quiero que la mejores con criterio profesional, manteniendo coherencia visual, jerarquía y foco en conversión.
+
+## CONTEXTO
+
+Estoy construyendo la web de IntariX, empresa que desarrolla soluciones de negocio para industria.
+
+No vendemos software genérico.
+Resolvemos procesos críticos como:
+
+* cumplimiento (Permitium)
+* cobranza (Cobrium)
+* calidad (Optrium)
+
+El foco es:
+
+* eliminar Excel y procesos manuales
+* mejorar control operacional
+* entregar visibilidad en tiempo real
+* impactar directamente el negocio
+
+## IMPORTANTE
+
+Ya tengo código HTML + CSS funcionando.
+
+NO quiero que lo rehagas desde cero.
+
+Quiero que:
+
+* mejores lo existente
+* propongas cambios específicos
+* entregues código listo para reemplazar secciones
+
+## HERO (CRÍTICO)
+
+Debe mantenerse el concepto:
+
+“Controla tu operación.
+No la persigas.”
+
+Debe transmitir:
+
+* control
+* operación real
+* valor de negocio
+
+Ya existe:
+
+* imagen industrial
+* dashboard overlay
+* CTA
+
+Quiero que:
+
+* mejores el diseño visual del hero (sin hacerlo más complejo)
+* ajustes proporciones, jerarquía y espaciados
+* mejores el dashboard para que se vea más real
+* propongas microinteracciones elegantes (sin exagerar)
+
+## ESTILO VISUAL
+
+* fondo claro (blanco sofisticado, no plano)
+* look tecnológico + industrial
+* tipografía limpia (Inter)
+* sombras suaves, profundidad
+* nada de animaciones innecesarias
+* evitar estilo “startup genérica”
+
+## LOGOS
+
+Los logos ya existen:
+
+* IntariX
+* Permitium
+* Cobrium
+* Optrium
+
+Quiero que:
+
+* se integren con jerarquía
+* no se vean como “stickers”
+* respeten contraste y espacio
+
+## LO QUE QUIERO COMO RESPUESTA
+
+1. Observaciones concretas (qué mejorar y por qué)
+2. Cambios específicos por sección (especial foco en Hero)
+3. Código listo para reemplazar (HTML + CSS parcial)
+4. Recomendaciones visuales aplicables (no teóricas)
+
+## REGLAS
+
+* No reinventar todo
+* No simplificar en exceso
+* No hacer diseño genérico
+* Pensar como empresa que vende soluciones reales
+
+## OBJETIVO FINAL
+
+Que la web se vea:
+
+* profesional
+* creíble
+* lista para vender
+
+Y que el hero genere interés inmediato en clientes industriales.
