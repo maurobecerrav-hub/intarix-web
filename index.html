@@ -1227,6 +1227,7 @@ function toggleAnim(el) {
   window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { animations: el.checked } }, '*');
 }
 </script>
+<script>
 // ─── Mobile nav ───
 const hamburger = document.getElementById('nav-hamburger');
 const mobileNav = document.getElementById('nav-mobile');
@@ -1244,6 +1245,6 @@ if (hamburger) {
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 }
-
+</script>
 </body>
 </html>
