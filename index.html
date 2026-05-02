@@ -309,39 +309,84 @@ textarea.form-input{height:100px;line-height:1.6}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 
 /* ─── RESPONSIVE MÓVIL ─── */
+@media (max-width: 1024px) {
+  nav { padding: 0 24px; }
+  .hero { padding: 60px 24px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .dashboard-wrap { max-width: 580px; margin: 0 auto; }
+  .dashboard { transform: none; }
+  .dashboard:hover { transform: none; }
+  section { padding: 72px 24px; }
+  .section-h2 { font-size: 32px; }
+  .valor-grid { grid-template-columns: 1fr; }
+  .prod-grid { grid-template-columns: 1fr; }
+  .comp-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
 @media (max-width: 768px) {
-  nav { padding: 0 16px !important; height: auto !important; flex-wrap: wrap; gap: 8px; padding-top: 10px !important; padding-bottom: 10px !important; }
-  .nav-links { display: none !important; }
-  .nav-cta .btn-ghost { display: none !important; }
-  .nav-logo img { height: 40px !important; }
-  .hero { padding: 40px 20px !important; min-height: auto !important; }
-  .hero-inner { grid-template-columns: 1fr !important; gap: 32px !important; }
-  .dashboard-wrap { display: none !important; }
-  .hero-h1 { font-size: 36px !important; }
-  .hero-sub { font-size: 15px !important; }
-  .hero-proof { flex-wrap: wrap !important; gap: 16px !important; }
-  .proof-sep { display: none !important; }
-  .valor-grid { grid-template-columns: 1fr !important; }
-  .prod-grid { grid-template-columns: 1fr !important; }
-  .prod-card { padding: 24px !important; }
-  .comp-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
-  .steps-grid { grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
-  .cta-buttons { flex-direction: column !important; width: 100% !important; }
-  .cta-buttons .btn { width: 100% !important; justify-content: center !important; }
-  .cta-title { font-size: 32px !important; }
-  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
-  .footer-brand { grid-column: 1 / -1 !important; }
-  .form-row { grid-template-columns: 1fr !important; }
-  .modal-box { margin: 0 8px !important; max-height: 95vh !important; }
-  .modal-head, .modal-body, .modal-footer { padding-left: 20px !important; padding-right: 20px !important; }
-  .section-inner, section > div { max-width: 100% !important; padding-left: 20px !important; padding-right: 20px !important; }
+  nav { padding: 0 16px; height: 56px; }
+  .nav-links { display: none; }
+  .nav-cta .btn-ghost { display: none; }
+  .nav-logo img { height: 40px; }
+  .hero { padding: 40px 20px; min-height: auto; }
+  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+  .dashboard-wrap { display: none; }
+  .hero-h1 { font-size: 36px; }
+  .hero-sub { font-size: 15px; max-width: 100%; }
+  .hero-actions { flex-direction: column; width: 100%; }
+  .hero-actions .btn-lg { width: 100%; justify-content: center; }
+  .hero-proof { flex-wrap: wrap; gap: 16px; }
+  .proof-sep { display: none; }
+  section { padding: 52px 20px; }
+  .section-h2 { font-size: 26px; line-height: 1.2; }
+  .section-sub { font-size: 15px; }
+  .valor-grid { grid-template-columns: 1fr; gap: 0; }
+  .valor-card { padding: 28px 20px; }
+  .prod-grid { grid-template-columns: 1fr; gap: 14px; }
+  .prod-card { padding: 24px 20px; }
+  .comp-grid { grid-template-columns: 1fr; gap: 14px; }
+  .comp-col { padding: 28px 20px; }
+  .steps { grid-template-columns: 1fr; gap: 12px; }
+  .step { padding: 24px 20px; }
+  .cta-final { padding: 60px 20px; }
+  .cta-h2 { font-size: 28px; }
+  .cta-actions { flex-direction: column; align-items: center; width: 100%; }
+  .cta-actions .btn-lg { width: 100%; justify-content: center; }
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+  footer { padding: 40px 20px 24px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-logo-text { font-size: 22px; }
+  .form-row { grid-template-columns: 1fr; }
+  .modal-box { max-height: 95vh; }
+  .modal-head { padding: 20px 20px 0; }
+  .modal-body { padding: 16px 20px 20px; }
+  .modal-footer { padding: 0 20px 20px; }
 }
 @media (max-width: 480px) {
-  .hero-actions { flex-direction: column !important; width: 100% !important; }
-  .hero-actions .btn { width: 100% !important; justify-content: center !important; }
-  .steps-grid { grid-template-columns: 1fr !important; }
-  .footer-grid { grid-template-columns: 1fr !important; }
-  .hero-h1 { font-size: 30px !important; }
+  .hero-h1 { font-size: 30px; }
+  .section-h2 { font-size: 22px; }
+  .steps { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .proof-num { font-size: 18px; }
+}
+
+
+/* ─── HAMBURGER MOBILE NAV ─── */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:transparent;margin-left:8px}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
+.nav-hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.nav-mobile{display:none;position:fixed;inset:0;top:56px;z-index:99;background:rgba(245,247,252,0.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:32px;padding:32px}
+.nav-mobile.open{display:flex}
+.nav-mobile a.nav-item{font-size:24px;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:-.03em;transition:color .2s}
+.nav-mobile a.nav-item:hover{color:var(--blue)}
+.nav-mobile .btn{font-size:16px;padding:14px 40px;width:100%;text-align:center;justify-content:center}
+@media(max-width:768px){
+  .nav-hamburger{display:flex}
+  .nav-links{display:none}
+  .nav-cta .btn-ghost{display:none}
 }
 
 </style>
@@ -361,11 +406,20 @@ textarea.form-input{height:100px;line-height:1.6}
     <li><a href="#proceso">Cómo funciona</a></li>
     <li><a href="#contacto">Empresa</a></li>
   </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
   <div class="nav-cta">
     <a href="#" class="btn btn-ghost demo-btn">Ver demo</a>
     <a href="#cta" class="btn btn-primary demo-btn">Agendar demo</a>
   </div>
 </nav>
+<div class="nav-mobile" id="nav-mobile" role="navigation" aria-label="Menú móvil">
+  <a class="nav-item" href="#valor" onclick="closeMobileNav()">Por qué IntariX</a>
+  <a class="nav-item" href="#productos" onclick="closeMobileNav()">Soluciones</a>
+  <a class="nav-item" href="#proceso" onclick="closeMobileNav()">Cómo funciona</a>
+  <a class="nav-item btn btn-primary demo-btn" href="#cta" onclick="closeMobileNav()">Agendar demo →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
@@ -1173,5 +1227,23 @@ function toggleAnim(el) {
   window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { animations: el.checked } }, '*');
 }
 </script>
+// ─── Mobile nav ───
+const hamburger = document.getElementById('nav-hamburger');
+const mobileNav = document.getElementById('nav-mobile');
+function closeMobileNav() {
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded','false');
+  mobileNav.classList.remove('open');
+  document.body.style.overflow = '';
+}
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+}
+
 </body>
 </html>
