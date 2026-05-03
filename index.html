@@ -1033,7 +1033,7 @@ document.getElementById('form-submit-btn').addEventListener('click', async () =>
   const producto = document.getElementById('f-producto').value;
   const mensaje  = document.getElementById('f-mensaje').value.trim();
 
-  if (!nombre || !cargo || !empresa || !tel || !mail || !producto) {
+  if (!nombre || !cargo || !empresa || !mail || !producto) {
     alert('Por favor completa todos los campos obligatorios.');
     return;
   }
@@ -1062,6 +1062,19 @@ document.getElementById('form-submit-btn').addEventListener('click', async () =>
     });
 
     if (res.ok) {
+      // Enviar correo de confirmación al cliente via EmailJS
+      try {
+        await emailjs.send('service_qd51tv9', 'template_c5ef8gv', {
+          nombre: nombre,
+          email: mail,
+          solucion: producto,
+          empresa: empresa,
+          cargo: cargo,
+          telefono: tel || 'No proporcionado'
+        });
+      } catch(emailErr) {
+        console.log('EmailJS error:', emailErr);
+      }
       document.getElementById('modal-form-body').style.display = 'none';
       document.getElementById('modal-footer').style.display = 'none';
       document.getElementById('form-success').classList.add('visible');
