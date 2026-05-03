@@ -1023,12 +1023,11 @@ modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 // Cerrar con Escape
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// Envío del formulario vía Formspree
+// Envío del formulario vía EmailJS
 document.getElementById('form-submit-btn').addEventListener('click', async () => {
   const nombre   = document.getElementById('f-nombre').value.trim();
   const cargo    = document.getElementById('f-cargo').value.trim();
   const empresa  = document.getElementById('f-empresa').value.trim();
-  const tel      = document.getElementById('f-tel').value.trim();
   const mail     = document.getElementById('f-mail').value.trim();
   const producto = document.getElementById('f-producto').value;
   const mensaje  = document.getElementById('f-mensaje').value.trim();
@@ -1047,34 +1046,37 @@ document.getElementById('form-submit-btn').addEventListener('click', async () =>
   btn.textContent = 'Enviando...';
 
   try {
-    const res = await fetch('https://formspree.io/f/xdabkrba', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        _subject: 'Solicitud de demo — ' + empresa,
-        _replyto: mail,
-        nombre, cargo, empresa,
-        telefono: tel,
-        correo: mail,
-        solucion: producto,
-        mensaje: mensaje || '(sin mensaje)'
-      })
+    await emailjs.send('service_qd51tv9', 'template_c5ef8gv', {
+      nombre:   nombre,
+      cargo:    cargo,
+      empresa:  empresa,
+      email:    mail,
+      solucion: producto,
+      mensaje:  mensaje || '(sin mensaje)'
     });
 
+    document.getElementById('modal-form-body').style.display = 'none';
+    document.getElementById('modal-footer').style.display = 'none';
+    document.getElementById('form-success').classList.add('visible');
+    setTimeout(closeModal, 4000);
+
+  } catch(err) {
+    console.error('EmailJS error:', err);
+    // Fallback a mailto
+    const subject = encodeURIComponent('Solicitud de demo — ' + empresa);
+    const body = encodeURIComponent(
+      'Nombre: ' + nombre + '\nCargo: ' + cargo + '\nEmpresa: ' + empresa +
+      '\nCorreo: ' + mail + '\nSolución: ' + producto +
+      '\n\nMensaje:\n' + (mensaje || '(sin mensaje)')
+    );
+    window.location.href = 'mailto:contacto@intarix.cl?subject=' + subject + '&body=' + body;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Enviar solicitud →';
+  }
+});
+
     if (res.ok) {
-      // Enviar correo de confirmación al cliente via EmailJS
-      try {
-        await emailjs.send('service_qd51tv9', 'template_c5ef8gv', {
-          nombre: nombre,
-          email: mail,
-          solucion: producto,
-          empresa: empresa,
-          cargo: cargo,
-          telefono: tel || 'No proporcionado'
-        });
-      } catch(emailErr) {
-        console.log('EmailJS error:', emailErr);
-      }
       document.getElementById('modal-form-body').style.display = 'none';
       document.getElementById('modal-footer').style.display = 'none';
       document.getElementById('form-success').classList.add('visible');
