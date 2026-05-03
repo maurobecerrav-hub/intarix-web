@@ -37,7 +37,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--i
 nav{position:sticky;top:0;z-index:100;background:rgba(245,247,252,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;transition:box-shadow .3s}
 nav.scrolled{box-shadow:var(--sh-sm)}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo img{height:58px;object-fit:contain}
+.nav-logo img{height:40px;object-fit:contain}
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
 .nav-links a{text-decoration:none;color:var(--ink-2);font-size:14px;font-weight:500;letter-spacing:-.01em;transition:color .2s}
 .nav-links a:hover{color:var(--ink)}
@@ -398,20 +398,19 @@ textarea.form-input{height:100px;line-height:1.6}
   <meta property="og:url" content="https://www.intarix.cl">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" type="image/png" href="/uploads/intarix-logo-transparent.png">
-  <link rel="apple-touch-icon" href="/uploads/intarix-logo-transparent.png">
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="main-nav">
   <a href="#" class="nav-logo">
-    <img src="uploads/intarix-logo-transparent.png" alt="IntariX">
+    <img src="uploads/icono-intarix.png" alt="IntariX">
   </a>
   <ul class="nav-links">
     <li><a href="#productos">Soluciones</a></li>
     <li><a href="#valor">Por qué IntariX</a></li>
     <li><a href="#proceso">Cómo funciona</a></li>
+    <li><a href="#contacto">Empresa</a></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -1064,10 +1063,7 @@ document.getElementById('form-submit-btn').addEventListener('click', async () =>
       mensaje:  mensaje || '(sin mensaje)'
     };
 
-    // 1. Confirmación al cliente
     await emailjs.send('service_qd51tv9', 'template_c5ef8gv', params);
-
-    // 2. Notificación interna con todos los datos
     await emailjs.send('service_qd51tv9', 'template_0zvvq3s', params);
 
     document.getElementById('modal-form-body').style.display = 'none';
