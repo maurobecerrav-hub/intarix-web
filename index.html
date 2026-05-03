@@ -1076,36 +1076,6 @@ document.getElementById('form-submit-btn').addEventListener('click', async () =>
   }
 });
 
-    if (res.ok) {
-      document.getElementById('modal-form-body').style.display = 'none';
-      document.getElementById('modal-footer').style.display = 'none';
-      document.getElementById('form-success').classList.add('visible');
-      setTimeout(closeModal, 4000);
-    } else {
-      // Fallback a mailto si Formspree falla
-      const subject = encodeURIComponent('Solicitud de demo — ' + empresa);
-      const body = encodeURIComponent(
-        'Nombre: ' + nombre + '\nCargo: ' + cargo + '\nEmpresa: ' + empresa +
-        '\nTeléfono: ' + tel + '\nCorreo: ' + mail +
-        '\nSolución: ' + producto + '\n\nMensaje:\n' + (mensaje || '(sin mensaje)')
-      );
-      window.location.href = 'mailto:contacto@intarix.cl?subject=' + subject + '&body=' + body;
-    }
-  } catch(e) {
-    // Fallback a mailto
-    const subject = encodeURIComponent('Solicitud de demo — ' + empresa);
-    const body = encodeURIComponent(
-      'Nombre: ' + nombre + '\nCargo: ' + cargo + '\nEmpresa: ' + empresa +
-      '\nTeléfono: ' + tel + '\nCorreo: ' + mail +
-      '\nSolución: ' + producto + '\n\nMensaje:\n' + (mensaje || '(sin mensaje)')
-    );
-    window.location.href = 'mailto:contacto@intarix.cl?subject=' + subject + '&body=' + body;
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Enviar solicitud →';
-  }
-});;
-
 
 // ─── Dashboard rotativo ───
 let animRunning = true;
