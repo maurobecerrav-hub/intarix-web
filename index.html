@@ -37,7 +37,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--i
 nav{position:sticky;top:0;z-index:100;background:rgba(245,247,252,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;transition:box-shadow .3s}
 nav.scrolled{box-shadow:var(--sh-sm)}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo img{height:58px;object-fit:contain}
+.nav-logo img{height:150px;object-fit:contain}
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
 .nav-links a{text-decoration:none;color:var(--ink-2);font-size:14px;font-weight:500;letter-spacing:-.01em;transition:color .2s}
 .nav-links a:hover{color:var(--ink)}
@@ -328,7 +328,7 @@ textarea.form-input{height:100px;line-height:1.6}
   nav { padding: 0 16px; height: 56px; }
   .nav-links { display: none; }
   .nav-cta .btn-ghost { display: none; }
-  .nav-logo img { height: 100px; }
+  .nav-logo img { height: 40px; }
   .hero { padding: 40px 20px; min-height: auto; }
   .hero-inner { grid-template-columns: 1fr; gap: 32px; }
   .dashboard-wrap { display: none; }
@@ -404,7 +404,7 @@ textarea.form-input{height:100px;line-height:1.6}
     <li><a href="#productos">Soluciones</a></li>
     <li><a href="#valor">Por qué IntariX</a></li>
     <li><a href="#proceso">Cómo funciona</a></li>
-    <li><a href="#valor">Empresa</a></li>
+    <li><a href="#contacto">Empresa</a></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -1028,7 +1028,6 @@ document.getElementById('form-submit-btn').addEventListener('click', async () =>
   const nombre   = document.getElementById('f-nombre').value.trim();
   const cargo    = document.getElementById('f-cargo').value.trim();
   const empresa  = document.getElementById('f-empresa').value.trim();
-  const tel      = document.getElementById('f-tel').value.trim();
   const mail     = document.getElementById('f-mail').value.trim();
   const producto = document.getElementById('f-producto').value;
   const mensaje  = document.getElementById('f-mensaje').value.trim();
@@ -1047,18 +1046,14 @@ document.getElementById('form-submit-btn').addEventListener('click', async () =>
   btn.textContent = 'Enviando...';
 
   try {
-    const params = {
+    await emailjs.send('service_qd51tv9', 'template_c5ef8gv', {
       nombre:   nombre,
       cargo:    cargo,
       empresa:  empresa,
       email:    mail,
       solucion: producto,
-      telefono: tel || 'No proporcionado',
       mensaje:  mensaje || '(sin mensaje)'
-    };
-
-    await emailjs.send('service_qd51tv9', 'template_c5ef8gv', params);
-    await emailjs.send('service_qd51tv9', 'template_0zvvq3s', params);
+    });
 
     document.getElementById('modal-form-body').style.display = 'none';
     document.getElementById('modal-footer').style.display = 'none';
@@ -1067,12 +1062,50 @@ document.getElementById('form-submit-btn').addEventListener('click', async () =>
 
   } catch(err) {
     console.error('EmailJS error:', err);
-    alert('Hubo un problema al enviar. Por favor escríbenos directamente a contacto@intarix.cl');
+    // Fallback a mailto
+    const subject = encodeURIComponent('Solicitud de demo — ' + empresa);
+    const body = encodeURIComponent(
+      'Nombre: ' + nombre + '\nCargo: ' + cargo + '\nEmpresa: ' + empresa +
+      '\nCorreo: ' + mail + '\nSolución: ' + producto +
+      '\n\nMensaje:\n' + (mensaje || '(sin mensaje)')
+    );
+    window.location.href = 'mailto:contacto@intarix.cl?subject=' + subject + '&body=' + body;
   } finally {
     btn.disabled = false;
     btn.textContent = 'Enviar solicitud →';
   }
 });
+
+    if (res.ok) {
+      document.getElementById('modal-form-body').style.display = 'none';
+      document.getElementById('modal-footer').style.display = 'none';
+      document.getElementById('form-success').classList.add('visible');
+      setTimeout(closeModal, 4000);
+    } else {
+      // Fallback a mailto si Formspree falla
+      const subject = encodeURIComponent('Solicitud de demo — ' + empresa);
+      const body = encodeURIComponent(
+        'Nombre: ' + nombre + '\nCargo: ' + cargo + '\nEmpresa: ' + empresa +
+        '\nTeléfono: ' + tel + '\nCorreo: ' + mail +
+        '\nSolución: ' + producto + '\n\nMensaje:\n' + (mensaje || '(sin mensaje)')
+      );
+      window.location.href = 'mailto:contacto@intarix.cl?subject=' + subject + '&body=' + body;
+    }
+  } catch(e) {
+    // Fallback a mailto
+    const subject = encodeURIComponent('Solicitud de demo — ' + empresa);
+    const body = encodeURIComponent(
+      'Nombre: ' + nombre + '\nCargo: ' + cargo + '\nEmpresa: ' + empresa +
+      '\nTeléfono: ' + tel + '\nCorreo: ' + mail +
+      '\nSolución: ' + producto + '\n\nMensaje:\n' + (mensaje || '(sin mensaje)')
+    );
+    window.location.href = 'mailto:contacto@intarix.cl?subject=' + subject + '&body=' + body;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Enviar solicitud →';
+  }
+});;
+
 
 // ─── Dashboard rotativo ───
 let animRunning = true;
