@@ -89,11 +89,9 @@
 
   if (window.emailjs) window.emailjs.init('WKhLZim9I8fTPpbhm');
 
-  function openModal(preset, message) {
+  function openModal(preset) {
     lastFocus = document.activeElement;
     if (preset && interest) interest.value = preset;
-    var messageField = document.getElementById('f-mensaje');
-    if (message && messageField && !messageField.value.trim()) messageField.value = message;
     form.hidden = false;
     success.hidden = true;
     errorBox.hidden = true;
@@ -111,7 +109,7 @@
   }
 
   document.querySelectorAll('[data-contact]').forEach(function (btn) {
-    btn.addEventListener('click', function (e) { e.preventDefault(); openModal(btn.getAttribute('data-contact'), btn.getAttribute('data-mensaje')); });
+    btn.addEventListener('click', function (e) { e.preventDefault(); openModal(btn.getAttribute('data-contact')); });
   });
   modal.querySelectorAll('[data-close]').forEach(function (btn) { btn.addEventListener('click', closeModal); });
   modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });

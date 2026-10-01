@@ -535,17 +535,15 @@ textarea.form-input{min-height:96px;resize:vertical}
 .pm-teams{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
 .pm-teams li{padding:9px 16px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:14.5px;font-weight:500;color:var(--ink-2)}
 
-.pm-plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;max-width:1040px;margin-inline:auto}
-.pm-plan{display:flex;flex-direction:column;gap:18px;padding:32px;border-radius:var(--r-lg);background:#fff;border:1px solid var(--line);box-shadow:var(--sh-sm)}
-.pm-plan h3{font-size:18px;font-weight:650;letter-spacing:-.015em;color:var(--pm-blue)}
-.pm-price{font-size:16px;color:var(--ink-2);padding-bottom:18px;border-bottom:1px solid var(--line-soft)}
-.pm-price strong{font-size:36px;font-weight:750;letter-spacing:-.035em;color:var(--ink);margin-right:4px}
-.pm-price small{font-size:13.5px;color:var(--ink-3);margin-left:4px}
-.pm-plan .check-list .icon{color:var(--pm-green)}
-.pm-plan .btn{margin-top:auto;width:100%}
-.pm-plan.is-enterprise{background:linear-gradient(180deg,#F4F8FD,#fff 55%);border-color:#CFDDF0}
-.pm-plans-note{margin-top:20px;text-align:center;font-size:13.5px;color:var(--ink-3)}
-.page-pm #planes + .section{padding-top:0}
+.pm-tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;max-width:1040px;margin-inline:auto}
+.pm-tier{display:flex;flex-direction:column;gap:14px;padding:32px;border-radius:var(--r-lg);background:#fff;border:1px solid var(--line);box-shadow:var(--sh-sm)}
+.pm-tier .icon-badge{background:var(--pm-blue-soft);color:var(--pm-blue)}
+.pm-tier:nth-child(3) .icon-badge{background:var(--pm-green-soft);color:var(--pm-green)}
+.pm-tier h3{font-size:19px;font-weight:650;letter-spacing:-.02em;color:var(--ink)}
+.pm-tier p{font-size:15px;color:var(--ink-2);line-height:1.6}
+.pm-tier .btn{margin-top:auto;width:100%;padding:11px 14px;font-size:14.5px;white-space:normal}
+.pm-tiers-cta{display:flex;justify-content:center;margin-top:32px}
+.page-pm #operacion + .section{padding-top:0}
 
 /* ==========================================================================
    Responsive
@@ -607,7 +605,7 @@ textarea.form-input{min-height:96px;resize:vertical}
 
 @media (max-width: 768px){
   .pm-watch ul{grid-template-columns:1fr}
-  .pm-plans{grid-template-columns:1fr;max-width:520px}
+  .pm-tiers{grid-template-columns:1fr;max-width:520px}
   .attr-grid,.ai-cols{grid-template-columns:1fr}
   .services-grid{grid-template-columns:1fr}
   .exp-grid{grid-template-columns:1fr}
@@ -627,7 +625,8 @@ textarea.form-input{min-height:96px;resize:vertical}
   .pm-flow strong{align-self:end;padding-top:6px}
   .pm-flow li:not(:last-child)::after{display:block;top:60px;bottom:4px;left:27px;right:auto;width:2px;height:auto;background:#D3DEEC}
   .pm-gate-card.is-blocked{margin-left:0}
-  .pm-plan{padding:24px}
+  .pm-tier{padding:24px}
+  .pm-tiers-cta .btn{width:100%}
   .brand img{height:30px}
   .hero h1{font-size:clamp(36px, 10.5vw, 44px)}
   .hero-kicker{font-size:12px}

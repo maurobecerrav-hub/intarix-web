@@ -31,4 +31,4 @@ npx http-server -c-1 .
 - BlueBrain: no redibujar el logo. Los PNG de `assets/img/bluebrain/` se generan desde el archivo oficial (fondo convertido a transparencia, sin alterar formas ni colores). Si se dispone del SVG oficial, reemplazarlos por ese archivo.
 - LinkedIn: el enlace está retirado hasta confirmar la URL oficial. Para activarlo, agregar en la columna "Intarix" del footer de ambas páginas:
   `<li><a href="URL_CONFIRMADA" target="_blank" rel="noopener"><svg class="icon icon-sm" aria-hidden="true"><use href="assets/img/icons.svg#i-linkedin"/></svg>LinkedIn</a></li>`
-- Permitium: los planes (Core, Control, Enterprise) y sus valores en UF + IVA están en `plataformas/permitium/index.html`, sección `#planes`. Los botones de plan precargan el mensaje del formulario con `data-mensaje`.
+- Permitium: la página pública no muestra precios ni planes comerciales. La sección `#operacion` presenta niveles conceptuales y deriva al formulario de contacto (Permitium preseleccionado).
