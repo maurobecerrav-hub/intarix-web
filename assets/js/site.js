@@ -19,7 +19,11 @@
       toggle.setAttribute('aria-expanded', String(open));
       menu.classList.toggle('is-open', open);
     }
-    toggle.addEventListener('click', function () { set(toggle.getAttribute('aria-expanded') !== 'true'); });
+    toggle.addEventListener('click', function () {
+      // Con mouse el hover ya abrió el menú: el clic no debe cerrarlo. Con teclado alterna.
+      if (item.matches(':hover')) set(true);
+      else set(toggle.getAttribute('aria-expanded') !== 'true');
+    });
     item.addEventListener('mouseenter', function () { clearTimeout(hoverTimer); set(true); });
     item.addEventListener('mouseleave', function () { hoverTimer = setTimeout(function () { set(false); }, 120); });
     item.addEventListener('focusout', function (e) { if (!item.contains(e.relatedTarget)) set(false); });
@@ -85,9 +89,11 @@
 
   if (window.emailjs) window.emailjs.init('WKhLZim9I8fTPpbhm');
 
-  function openModal(preset) {
+  function openModal(preset, message) {
     lastFocus = document.activeElement;
     if (preset && interest) interest.value = preset;
+    var messageField = document.getElementById('f-mensaje');
+    if (message && messageField && !messageField.value.trim()) messageField.value = message;
     form.hidden = false;
     success.hidden = true;
     errorBox.hidden = true;
@@ -105,7 +111,7 @@
   }
 
   document.querySelectorAll('[data-contact]').forEach(function (btn) {
-    btn.addEventListener('click', function (e) { e.preventDefault(); openModal(btn.getAttribute('data-contact')); });
+    btn.addEventListener('click', function (e) { e.preventDefault(); openModal(btn.getAttribute('data-contact'), btn.getAttribute('data-mensaje')); });
   });
   modal.querySelectorAll('[data-close]').forEach(function (btn) { btn.addEventListener('click', closeModal); });
   modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
