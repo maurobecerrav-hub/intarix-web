@@ -19,7 +19,11 @@
       toggle.setAttribute('aria-expanded', String(open));
       menu.classList.toggle('is-open', open);
     }
-    toggle.addEventListener('click', function () { set(toggle.getAttribute('aria-expanded') !== 'true'); });
+    toggle.addEventListener('click', function () {
+      // Con mouse el hover ya abrió el menú: el clic no debe cerrarlo. Con teclado alterna.
+      if (item.matches(':hover')) set(true);
+      else set(toggle.getAttribute('aria-expanded') !== 'true');
+    });
     item.addEventListener('mouseenter', function () { clearTimeout(hoverTimer); set(true); });
     item.addEventListener('mouseleave', function () { hoverTimer = setTimeout(function () { set(false); }, 120); });
     item.addEventListener('focusout', function (e) { if (!item.contains(e.relatedTarget)) set(false); });

@@ -6,10 +6,12 @@ Sitio estático (HTML + CSS + JS sin dependencias de build). Se publica tal cual
 
 ```
 index.html                     Home (Plataformas · Servicios Profesionales · Inteligencia Agéntica)
+plataformas/permitium/         Página de producto Permitium (/plataformas/permitium/)
 plataformas/bluebrain/         Página de producto BlueBrain (/plataformas/bluebrain/)
 assets/css/site.css            Sistema visual compartido (tokens, componentes, responsive)
 assets/js/site.js              Navegación, menú móvil, modal de contacto (EmailJS), revelado
 assets/img/                    Logos optimizados, íconos (sprite SVG), imágenes Open Graph
+assets/img/permitium/          Logo oficial Permitium (recortes del archivo original en uploads/)
 assets/img/bluebrain/          Logo oficial BlueBrain (recortes fieles del archivo del Brand Kit v1)
 uploads/                       Assets originales (favicon en uso)
 robots.txt, sitemap.xml        SEO
@@ -29,3 +31,4 @@ npx http-server -c-1 .
 - BlueBrain: no redibujar el logo. Los PNG de `assets/img/bluebrain/` se generan desde el archivo oficial (fondo convertido a transparencia, sin alterar formas ni colores). Si se dispone del SVG oficial, reemplazarlos por ese archivo.
 - LinkedIn: el enlace está retirado hasta confirmar la URL oficial. Para activarlo, agregar en la columna "Intarix" del footer de ambas páginas:
   `<li><a href="URL_CONFIRMADA" target="_blank" rel="noopener"><svg class="icon icon-sm" aria-hidden="true"><use href="assets/img/icons.svg#i-linkedin"/></svg>LinkedIn</a></li>`
+- Permitium: la página pública no muestra precios ni planes comerciales. La sección `#operacion` presenta niveles conceptuales y deriva al formulario de contacto (Permitium preseleccionado).
