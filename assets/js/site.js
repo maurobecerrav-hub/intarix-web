@@ -191,14 +191,7 @@
           error: err
         });
 
-        var detail = '';
-        if (err && err.status === 403) {
-          detail = ' Revisa la autorización del dominio o la configuración del servicio de correo.';
-        } else if (err && err.status === 429) {
-          detail = ' Se alcanzó temporalmente el límite de envíos.';
-        }
-
-        showError('No pudimos enviar tu mensaje en este momento. Puedes escribirnos directamente a contacto@intarix.cl.' + detail);
+        showError('No pudimos enviar tu mensaje en este momento. Puedes escribirnos directamente a contacto@intarix.cl.');
       })
       .then(function () {
         submitBtn.disabled = false;
