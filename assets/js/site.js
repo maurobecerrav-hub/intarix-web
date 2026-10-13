@@ -87,7 +87,9 @@
   var interest = document.getElementById('f-interes');
   var lastFocus = null;
 
-  if (window.emailjs) window.emailjs.init('WKhLZim9I8fTPpbhm');
+  if (window.emailjs) {
+    window.emailjs.init({ publicKey: 'WKhLZim9I8fTPpbhm' });
+  }
 
   function openModal(preset) {
     lastFocus = document.activeElement;
@@ -158,17 +160,45 @@
       mensaje: data.mensaje || '(sin mensaje)'
     };
 
+    // El envío principal (lead hacia Intarix) determina el éxito del formulario.
+    // La confirmación automática al usuario es secundaria: si falla, no mostramos
+    // un falso error después de haber recibido correctamente el lead.
     window.emailjs.send('service_qd51tv9', 'template_c5ef8gv', params)
-      .then(function () { return window.emailjs.send('service_qd51tv9', 'template_0zvvq3s', params); })
-      .then(function () {
+      .then(function (response) {
+        console.info('EmailJS lead enviado:', response && response.status);
+
         form.reset();
         form.hidden = true;
         success.hidden = false;
         success.focus();
+
+        // Envío secundario: correo de confirmación al usuario.
+        return window.emailjs.send('service_qd51tv9', 'template_0zvvq3s', params)
+          .then(function (confirmationResponse) {
+            console.info('EmailJS confirmación enviada:', confirmationResponse && confirmationResponse.status);
+          })
+          .catch(function (confirmationError) {
+            console.warn('EmailJS: el lead fue recibido, pero falló la confirmación al usuario:', {
+              status: confirmationError && confirmationError.status,
+              text: confirmationError && confirmationError.text
+            });
+          });
       })
       .catch(function (err) {
-        console.error('EmailJS error:', err);
-        showError('Hubo un problema al enviar. Por favor escríbenos directamente a contacto@intarix.cl');
+        console.error('EmailJS: falló el envío principal del formulario:', {
+          status: err && err.status,
+          text: err && err.text,
+          error: err
+        });
+
+        var detail = '';
+        if (err && err.status === 403) {
+          detail = ' Revisa la autorización del dominio o la configuración del servicio de correo.';
+        } else if (err && err.status === 429) {
+          detail = ' Se alcanzó temporalmente el límite de envíos.';
+        }
+
+        showError('No pudimos enviar tu mensaje en este momento. Puedes escribirnos directamente a contacto@intarix.cl.' + detail);
       })
       .then(function () {
         submitBtn.disabled = false;
